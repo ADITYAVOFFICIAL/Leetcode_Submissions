@@ -1,34 +1,37 @@
 class Solution {
 public:
     string shortestPalindrome(string s) {
+        int n = s.size();
+        
+        // Reverse the input string
         string rev_s = s;
         reverse(rev_s.begin(), rev_s.end());
         
-        // Combine the original string, separator, and reversed string
+        // Combine original string and reversed string with a separator
         string combined = s + "#" + rev_s;
-        int n = combined.size();
         
-        // KMP partial match table
-        vector<int> kmp_table(n, 0);
+        // KMP partial match table for the combined string
+        vector<int> kmp_table(combined.size(), 0);
         
-        // Build the KMP table
-        for (int i = 1; i < n; ++i) {
+        // Build the KMP table (longest prefix that is also a suffix)
+        for (int i = 1; i < combined.size(); ++i) {
             int j = kmp_table[i - 1];
             
             while (j > 0 && combined[i] != combined[j]) {
                 j = kmp_table[j - 1];
             }
+            
             if (combined[i] == combined[j]) {
                 ++j;
             }
+            
             kmp_table[i] = j;
         }
         
-        // Find the length of the longest palindromic prefix
-        int longest_palindrome_length = kmp_table[n - 1];
+        // Length of the longest palindromic prefix
+        int longest_palindrome_length = kmp_table.back();
         
-        // Add the necessary characters in front of the original string
-        string suffix_to_add = rev_s.substr(0, s.size() - longest_palindrome_length);
-        return suffix_to_add + s;
+        // Append the non-palindromic suffix from the reversed string to the front of the original string
+        return rev_s.substr(0, n - longest_palindrome_length) + s;
     }
 };
