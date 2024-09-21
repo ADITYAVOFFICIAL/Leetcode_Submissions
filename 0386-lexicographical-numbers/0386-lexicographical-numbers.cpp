@@ -2,17 +2,25 @@ class Solution {
 public:
     vector<int> lexicalOrder(int n) {
         vector<int> result;
-        for (int i = 1; i <= 9; ++i) {
-            dfs(i, n, result);
+        int curr = 1; // Start with the smallest number
+        
+        for (int i = 0; i < n; i++) {
+            result.push_back(curr); // Add the current number to the result
+            
+            // Calculate the next number in lexicographical order
+            if (curr * 10 <= n) {
+                curr *= 10; // Go to the next level
+            } else {
+                if (curr >= n) {
+                    curr /= 10; // If curr exceeds n, go up one level
+                }
+                curr++; // Move to the next number
+                while (curr % 10 == 0) {
+                    curr /= 10; // Remove trailing zeros
+                }
+            }
         }
+        
         return result;
-    }
-
-    void dfs(int curr, int n, vector<int>& result) {
-        if (curr > n) return; 
-        result.push_back(curr); 
-        for (int i = 0; i <= 9; ++i) { 
-            dfs(curr * 10 + i, n, result);
-        }
     }
 };
