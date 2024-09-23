@@ -1,16 +1,18 @@
 class Solution {
     struct TrieNode {
-        TrieNode* children[26] = {nullptr}; // Only 26 lowercase letters
-        bool isEndOfWord = false; // Mark the end of a valid word
+        TrieNode* children[26] = {nullptr}; // 26 lowercase letters
+        bool isEndOfWord = false; // Marks the end of a word
     };
-    
+
+    // Insert word into the trie
     void insert(TrieNode* root, const string& word) {
         TrieNode* node = root;
         for (char c : word) {
-            if (!node->children[c - 'a']) {
-                node->children[c - 'a'] = new TrieNode();
+            int idx = c - 'a';
+            if (!node->children[idx]) {
+                node->children[idx] = new TrieNode();
             }
-            node = node->children[c - 'a'];
+            node = node->children[idx];
         }
         node->isEndOfWord = true;
     }
@@ -24,29 +26,31 @@ public:
         for (const string& word : dictionary) {
             insert(root, word);
         }
-        
+
         // DP array to store the minimum extra characters from index i onwards
         vector<int> dp(n + 1, 0);
-        
-        // Fill dp array from right to left
+
+        // Traverse DP array backwards
         for (int i = n - 1; i >= 0; --i) {
-            // By default, consider the current character as extra
+            // Assume character i is extra by default
             dp[i] = dp[i + 1] + 1;
-            
+
             // Now use the trie to find matching dictionary words starting at i
             TrieNode* node = root;
             for (int j = i; j < n; ++j) {
-                if (!node->children[s[j] - 'a']) {
-                    break; // No matching prefix
+                int idx = s[j] - 'a';
+                if (!node->children[idx]) {
+                    break; // No further match in the trie
                 }
-                node = node->children[s[j] - 'a'];
+                node = node->children[idx];
                 if (node->isEndOfWord) {
-                    // If we find a word, minimize the extra characters
+                    // If we find a valid word, update dp[i]
                     dp[i] = min(dp[i], dp[j + 1]);
                 }
             }
         }
-        
+
+        // Return the result which is dp[0]
         return dp[0];
     }
 };
