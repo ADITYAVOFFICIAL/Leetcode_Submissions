@@ -1,28 +1,52 @@
 class Solution {
+    struct TrieNode {
+        TrieNode* children[26] = {nullptr}; // Only 26 lowercase letters
+        bool isEndOfWord = false; // Mark the end of a valid word
+    };
+    
+    void insert(TrieNode* root, const string& word) {
+        TrieNode* node = root;
+        for (char c : word) {
+            if (!node->children[c - 'a']) {
+                node->children[c - 'a'] = new TrieNode();
+            }
+            node = node->children[c - 'a'];
+        }
+        node->isEndOfWord = true;
+    }
+
 public:
     int minExtraChar(string s, vector<string>& dictionary) {
         int n = s.size();
-        // Create a set for fast lookup of dictionary words
-        unordered_set<string> dict(dictionary.begin(), dictionary.end());
         
-        // DP array where dp[i] is the minimum extra characters starting from index i
+        // Build the trie from the dictionary
+        TrieNode* root = new TrieNode();
+        for (const string& word : dictionary) {
+            insert(root, word);
+        }
+        
+        // DP array to store the minimum extra characters from index i onwards
         vector<int> dp(n + 1, 0);
         
-        // Fill the dp array from right to left
+        // Fill dp array from right to left
         for (int i = n - 1; i >= 0; --i) {
             // By default, consider the current character as extra
             dp[i] = dp[i + 1] + 1;
             
-            // Try to match any word in the dictionary starting from index i
-            for (int len = 1; len <= n - i; ++len) {
-                string word = s.substr(i, len);
-                if (dict.count(word)) {
-                    dp[i] = min(dp[i], dp[i + len]);
+            // Now use the trie to find matching dictionary words starting at i
+            TrieNode* node = root;
+            for (int j = i; j < n; ++j) {
+                if (!node->children[s[j] - 'a']) {
+                    break; // No matching prefix
+                }
+                node = node->children[s[j] - 'a'];
+                if (node->isEndOfWord) {
+                    // If we find a word, minimize the extra characters
+                    dp[i] = min(dp[i], dp[j + 1]);
                 }
             }
         }
         
-        // The answer is dp[0], which represents the minimum extra characters starting from index 0
         return dp[0];
     }
 };
