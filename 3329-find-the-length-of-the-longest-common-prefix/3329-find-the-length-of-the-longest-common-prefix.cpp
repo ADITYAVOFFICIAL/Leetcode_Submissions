@@ -1,71 +1,82 @@
-
-
+#pragma GCC optimize("O3", "unroll-loops")
 class TrieNode {
 public:
+    int data;
     TrieNode* children[10];
-    bool isEnd;
+    bool isTerminal;
 
-    TrieNode() {
-        for (int i = 0; i < 10; ++i) {
-            children[i] = nullptr;
-        }
-        isEnd = false;
+    TrieNode(int ch) {
+        data = ch;
+        for (int i = 0; i < 10; i++) { children[i] = NULL; }
+        isTerminal = false;
     }
 };
 
 class Trie {
-public:
     TrieNode* root;
-    
+public:
     Trie() {
-        root = new TrieNode();
+        root = new TrieNode(-1);
     }
-    
-    // Insert a number as a string into the Trie
-    void insert(const std::string& num) {
+
+    void insert(int data) {
         TrieNode* node = root;
-        for (char ch : num) {
-            int idx = ch - '0';
-            if (!node->children[idx]) {
-                node->children[idx] = new TrieNode();
+        int divisor = 1;
+
+        while (data / divisor >= 10) {
+            divisor *= 10;
+        }
+
+        while (divisor > 0) {
+            int digit = (data / divisor) % 10;
+            if (node->children[digit] == NULL) {
+                node->children[digit] = new TrieNode(digit);
             }
-            node = node->children[idx];
+            node = node->children[digit];
+            divisor /= 10;
         }
-        node->isEnd = true;
+        node->isTerminal = true;
     }
-    
-    // Find the length of the longest common prefix between a number and any number in the Trie
-    int longestCommonPrefix(const std::string& num) {
+
+    int prefixLen(int data) {
         TrieNode* node = root;
-        int len = 0;
-        for (char ch : num) {
-            int idx = ch - '0';
-            if (!node->children[idx]) break;  // No further match
-            node = node->children[idx];
-            len++;
+        int length = 0;
+        int divisor = 1;
+
+        while (data / divisor >= 10) {
+            divisor *= 10;
         }
-        return len;
+
+        while (divisor > 0) {
+            int digit = (data / divisor) % 10;
+            if (node->children[digit] == NULL) {
+                return length;
+            }
+            node = node->children[digit];
+            length++;
+            divisor /= 10;
+        }
+        return length;
     }
 };
 
 class Solution {
+    Trie* trie = new Trie();
 public:
-    int longestCommonPrefix(std::vector<int>& arr1, std::vector<int>& arr2) {
-        Trie trie;
-        
-        // Insert all numbers from arr1 into the Trie as strings
-        for (int num : arr1) {
-            trie.insert(std::to_string(num));
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+        ios::sync_with_stdio(false);
+        cin.tie(0);
+        cout.tie(0);
+
+        for (const int& num : arr1) {
+            trie->insert(num);
         }
-        
-        int maxLength = 0;
-        
-        // Find the longest common prefix between arr2 numbers and Trie
-        for (int num : arr2) {
-            int commonLen = trie.longestCommonPrefix(std::to_string(num));
-            maxLength = std::max(maxLength, commonLen);
+
+        int maxLen = 0;
+        for (const int& num : arr2) {
+            maxLen = max(trie->prefixLen(num), maxLen);
         }
-        
-        return maxLength;
+
+        return maxLen;
     }
 };
