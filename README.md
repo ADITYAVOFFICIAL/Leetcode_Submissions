@@ -6,10 +6,12 @@ My LeetCode submissions (best code)
 ## Two Pointers
 |  |
 | ------- |
+| [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
 | [1894-merge-strings-alternately](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1894-merge-strings-alternately) |
 ## String
 |  |
 | ------- |
+| [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
 | [0214-shortest-palindrome](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0214-shortest-palindrome) |
 | [0389-find-the-difference](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0389-find-the-difference) |
 | [1894-merge-strings-alternately](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1894-merge-strings-alternately) |
@@ -37,6 +39,7 @@ My LeetCode submissions (best code)
 ## String Matching
 |  |
 | ------- |
+| [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
 | [0214-shortest-palindrome](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0214-shortest-palindrome) |
 ## Hash Function
 |  |
