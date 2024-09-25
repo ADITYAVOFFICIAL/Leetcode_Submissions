@@ -1,50 +1,102 @@
 class Solution {
 public:
-    // Trie Node structure
-    struct TrieNode {
-        TrieNode* children[26] = {};  // Pointers to child nodes
-        int count = 0;  // How many words have passed through this node
-    };
-    
-    // Insert a word into the Trie and update the count at each node
-    void insert(TrieNode* root, const string& word) {
-        TrieNode* node = root;
-        for (char c : word) {
-            int index = c - 'a';
-            if (!node->children[index]) {
-                node->children[index] = new TrieNode();
-            }
-            node = node->children[index];
-            node->count++;  // Increment count for the prefix
-        }
-    }
-    
-    // Calculate the prefix sum for a word
-    int getPrefixSum(TrieNode* root, const string& word) {
-        TrieNode* node = root;
-        int sum = 0;
-        for (char c : word) {
-            int index = c - 'a';
-            node = node->children[index];
-            sum += node->count;  // Add the count for the current prefix
-        }
-        return sum;
-    }
-    
+    typedef struct Trie {
+        struct Trie *data[26]{};
+        char *str{};
+        int vis{}, slen{};
+    } Trie;
+
     vector<int> sumPrefixScores(vector<string>& words) {
-        TrieNode* root = new TrieNode();  // Create the root of the Trie
-        
-        // Insert all words into the Trie
-        for (const string& word : words) {
-            insert(root, word);
+        vector<int> ret;
+        Trie *root = (Trie *) calloc(1, sizeof(Trie)), *tmp, *tmp2;
+        int sum, depth;
+
+        for (string &x : words)
+        {
+            tmp = root;
+            for (int i = 0, ilen = x.size(); i < ilen; ++i)
+            {
+                char y = x[i] - 'a';
+                if (!tmp->data[y])
+                {
+                    // If the node does not exist, create node, copy the entire substring into "str" field and stop
+                    tmp->data[y] = (Trie *) calloc(1, sizeof(Trie));
+                    tmp = tmp->data[y];
+                    tmp->vis = 1;
+                    tmp->slen = ilen - i;
+                    tmp->str = (char *) calloc(1, tmp->slen + 1);
+                    memcpy(tmp->str, x.data() + i, tmp->slen);
+                    break;
+                }
+
+                tmp = tmp->data[y];
+                ++tmp->vis;
+                // If the node exists and "str" field is empty, continue
+                if (tmp->slen == 0) continue;
+
+                int j, jlen = tmp->slen;
+                char *&ts = tmp->str;
+                int &tslen = tmp->slen;
+                // Find the index where the two strings are no longer the same
+                for (j = 1; j < jlen && j + i < ilen && x[j + i] == ts[j]; ++j)
+                {
+                    y = ts[j] - 'a';
+                    tmp->data[y] = (Trie *) calloc(1, sizeof(Trie));
+                    tmp = tmp->data[y];
+                    tmp->vis = 2;
+                }
+
+                // Create new nodes and copy substrings for the two strings, if applicable
+                tmp2 = tmp;
+                if (j < jlen)
+                {
+                    y = ts[j] - 'a';
+                    tmp->data[y] = (Trie *) calloc(1, sizeof(Trie));
+                    tmp = tmp->data[y];
+                    tmp->vis = 1;
+                    tmp->slen = jlen - j;
+                    tmp->str = (char *) calloc(1, tmp->slen + 1);
+                    memcpy(tmp->str, ts + j, tmp->slen);
+                }
+                j += i;
+                if (j < ilen)
+                {
+                    tmp = tmp2;
+                    y = x[j] - 'a';
+                    tmp->data[y] = (Trie *) calloc(1, sizeof(Trie));
+                    tmp = tmp->data[y];
+                    tmp->vis = 1;
+                    tmp->slen = ilen - j;
+                    tmp->str = (char *) calloc(1, tmp->slen + 1);
+                    memcpy(tmp->str, x.data() + j, tmp->slen);
+                }
+                free(ts);
+                ts = NULL;
+                tslen = 0;
+                break;
+            }
         }
-        
-        // Calculate prefix sum for each word
-        vector<int> result;
-        for (const string& word : words) {
-            result.push_back(getPrefixSum(root, word));
+
+        // Tally results
+        for (string &x : words)
+        {
+            tmp = root;
+            sum = depth = 0;
+            for (char y : x)
+            {
+                y -= 'a';
+                tmp = tmp->data[y];
+                if (tmp->vis == 1)
+                {
+                    sum += x.size() - depth;
+                    break;
+                }
+                sum += tmp->vis;
+                ++depth;
+            }
+            ret.push_back(sum);
         }
-        
-        return result;
+
+        return ret;
     }
 };
