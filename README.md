@@ -60,6 +60,7 @@ My LeetCode submissions (best code)
 ## Array
 |  |
 | ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0004-median-of-two-sorted-arrays) |
 | [2494-sum-of-prefix-scores-of-strings](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2494-sum-of-prefix-scores-of-strings) |
 | [2755-extra-characters-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2755-extra-characters-in-a-string) |
 | [3329-find-the-length-of-the-longest-common-prefix](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/3329-find-the-length-of-the-longest-common-prefix) |
@@ -71,4 +72,12 @@ My LeetCode submissions (best code)
 |  |
 | ------- |
 | [2494-sum-of-prefix-scores-of-strings](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2494-sum-of-prefix-scores-of-strings) |
+## Binary Search
+|  |
+| ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0004-median-of-two-sorted-arrays) |
+## Divide and Conquer
+|  |
+| ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0004-median-of-two-sorted-arrays) |
 <!---LeetCode Topics End-->
