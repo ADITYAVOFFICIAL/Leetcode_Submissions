@@ -113,4 +113,8 @@ My LeetCode submissions (best code)
 |  |
 | ------- |
 | [0432-all-oone-data-structure](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0432-all-oone-data-structure) |
+## Database
+|  |
+| ------- |
+| [1908-recyclable-and-low-fat-products](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1908-recyclable-and-low-fat-products) |
 <!---LeetCode Topics End-->
