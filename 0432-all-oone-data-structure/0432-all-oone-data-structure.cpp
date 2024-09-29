@@ -1,84 +1,62 @@
-
-using namespace std;
-
 class AllOne {
-    // A doubly linked list node, where each node holds a set of keys with the same count
-    struct Node {
-        int count;
-        unordered_set<string> keys;
-        Node(int count) : count(count) {}
-    };
-    
-    list<Node> nodes;  // Doubly linked list to store nodes with different counts
-    unordered_map<string, list<Node>::iterator> keyCountMap;  // Maps key to its corresponding node in the list
-
 public:
+unordered_map<string, int> m;
     AllOne() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0); cout.tie(0);
     }
-    
+    void updateMin() {        
+        _min.second = INT_MAX;
+        for(auto & nd : m) {
+            if(_min.second > nd.second) {
+                _min.second = nd.second;
+                _min.first = nd.first;
+            }
+        }
+    }
+    void updateMax() {        
+        _max.second = INT_MIN;
+        for(auto & nd : m) {
+            if(_max.second < nd.second) {
+                _max.second = nd.second;
+                _max.first = nd.first;
+            }
+        }
+    }
     void inc(string key) {
-        // If the key is already present, increment its count
-        if (keyCountMap.count(key)) {
-            auto currNode = keyCountMap[key];
-            auto nextNode = next(currNode);
-            // If the next node doesn't exist or doesn't have count+1, insert a new node
-            if (nextNode == nodes.end() || nextNode->count != currNode->count + 1) {
-                nextNode = nodes.insert(nextNode, Node(currNode->count + 1));
-            }
-            nextNode->keys.insert(key);
-            keyCountMap[key] = nextNode;
-            // Remove the key from the current node
-            currNode->keys.erase(key);
-            // If the current node becomes empty, remove it
-            if (currNode->keys.empty()) {
-                nodes.erase(currNode);
-            }
-        } else {
-            // If the key is not present, insert it with count 1
-            if (nodes.empty() || nodes.front().count != 1) {
-                nodes.push_front(Node(1));
-            }
-            nodes.front().keys.insert(key);
-            keyCountMap[key] = nodes.begin();
+        auto & v = m[key];
+        ++v;
+        if(v > _max.second) {
+            _max.second = v;
+            _max.first = key;
+        }
+        if(key == _min.first) {
+            updateMin();
+        }
+        if(_min.second > v || _min.first.empty()) {
+            _min.first = key;
+            _min.second = v;
         }
     }
-    
     void dec(string key) {
-        auto currNode = keyCountMap[key];
-        if (currNode->count == 1) {
-            // If the count becomes 0, remove the key completely
-            keyCountMap.erase(key);
-        } else {
-            auto prevNode = prev(currNode);
-            // If the previous node doesn't exist or doesn't have count-1, insert a new node
-            if (currNode == nodes.begin() || prevNode->count != currNode->count - 1) {
-                prevNode = nodes.insert(currNode, Node(currNode->count - 1));
-            }
-            prevNode->keys.insert(key);
-            keyCountMap[key] = prevNode;
-        }
-        // Remove the key from the current node
-        currNode->keys.erase(key);
-        // If the current node becomes empty, remove it
-        if (currNode->keys.empty()) {
-            nodes.erase(currNode);
-        }
+        m[key]--;
+        if(m[key] ==0)
+            m.erase(key);
+        _min.first = _max.first = "";
     }
-    
     string getMaxKey() {
-        return nodes.empty() ? "" : *(nodes.back().keys.begin());
+        if(!_max.first.empty())
+            return _max.first;
+        updateMax();
+        return _max.first;
     }
-    
     string getMinKey() {
-        return nodes.empty() ? "" : *(nodes.front().keys.begin());
-    }
-};
+        if(!_min.first.empty())
+            return _min.first;
 
-/**
- * Your AllOne object will be instantiated and called as such:
- * AllOne* obj = new AllOne();
- * obj->inc(key);
- * obj->dec(key);
- * string param_3 = obj->getMaxKey();
- * string param_4 = obj->getMinKey();
- */
+        updateMin();
+        return _min.first;
+    }
+    pair<string, int> _min{{}, 0};
+    pair<string, int> _max{{}, 0};
+};
