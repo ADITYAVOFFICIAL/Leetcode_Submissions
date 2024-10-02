@@ -1,25 +1,67 @@
 class Solution {
 public:
     vector<int> arrayRankTransform(vector<int>& arr) {
-        vector<int> sortedArr = arr;  // Create a copy of the original array
-        sort(sortedArr.begin(), sortedArr.end());  // Sort the copy
-        
-        unordered_map<int, int> rankMap;  // Map to store the rank for each element
+        if (arr.empty()) return {};
+
+        // Find min and max values
+        auto [min_it, max_it] = minmax_element(arr.begin(), arr.end());
+        int min_val = *min_it;
+        int max_val = *max_it;
+
+        // Create a count array
+        int range = max_val - min_val + 1;
+        if (range > 2'000'000) {
+            // Fall back to sorting method if range is too large
+            return sortingMethod(arr);
+        }
+
+        vector<bool> count(range, false);
+        for (int num : arr) {
+            count[num - min_val] = true;
+        }
+
+        // Calculate ranks
+        vector<int> ranks(range);
         int rank = 1;
+        for (int i = 0; i < range; i++) {
+            if (count[i]) {
+                ranks[i] = rank++;
+            }
+        }
+
+        // Assign ranks to original array
+        for (int& num : arr) {
+            num = ranks[num - min_val];
+        }
+
+        return arr;
+    }
+
+private:
+    vector<int> sortingMethod(vector<int>& arr) {
+        vector<int> sortedArr = arr;
+        sort(sortedArr.begin(), sortedArr.end());
         
-        // Assign ranks based on the sorted array
+        unordered_map<int, int> rankMap;
+        int rank = 1;
         for (int num : sortedArr) {
-            // If the element is not already ranked, assign it the current rank
             if (rankMap.find(num) == rankMap.end()) {
                 rankMap[num] = rank++;
             }
         }
         
-        // Replace each element in the original array with its rank
+        vector<int> result(arr.size());
         for (int i = 0; i < arr.size(); i++) {
-            arr[i] = rankMap[arr[i]];
+            result[i] = rankMap[arr[i]];
         }
         
-        return arr;
+        return result;
     }
 };
+static const int kds = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return 0;
+}();
+//KDS
