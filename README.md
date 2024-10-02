@@ -23,6 +23,7 @@ My LeetCode submissions (best code)
 | ------- |
 | [0389-find-the-difference](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0389-find-the-difference) |
 | [0432-all-oone-data-structure](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0432-all-oone-data-structure) |
+| [1256-rank-transform-of-an-array](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1256-rank-transform-of-an-array) |
 | [1620-check-if-array-pairs-are-divisible-by-k](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1620-check-if-array-pairs-are-divisible-by-k) |
 | [2755-extra-characters-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2755-extra-characters-in-a-string) |
 | [3329-find-the-length-of-the-longest-common-prefix](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/3329-find-the-length-of-the-longest-common-prefix) |
@@ -34,6 +35,7 @@ My LeetCode submissions (best code)
 |  |
 | ------- |
 | [0389-find-the-difference](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0389-find-the-difference) |
+| [1256-rank-transform-of-an-array](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1256-rank-transform-of-an-array) |
 ## Rolling Hash
 |  |
 | ------- |
@@ -65,6 +67,7 @@ My LeetCode submissions (best code)
 | [0004-median-of-two-sorted-arrays](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0004-median-of-two-sorted-arrays) |
 | [0729-my-calendar-i](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0729-my-calendar-i) |
 | [0731-my-calendar-ii](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0731-my-calendar-ii) |
+| [1256-rank-transform-of-an-array](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1256-rank-transform-of-an-array) |
 | [1497-design-a-stack-with-increment-operation](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1497-design-a-stack-with-increment-operation) |
 | [1620-check-if-array-pairs-are-divisible-by-k](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1620-check-if-array-pairs-are-divisible-by-k) |
 | [2494-sum-of-prefix-scores-of-strings](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2494-sum-of-prefix-scores-of-strings) |
