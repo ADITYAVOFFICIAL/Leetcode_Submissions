@@ -8,6 +8,7 @@ My LeetCode submissions (best code)
 | ------- |
 | [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
 | [1894-merge-strings-alternately](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1894-merge-strings-alternately) |
+| [2581-divide-players-into-teams-of-equal-skill](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2581-divide-players-into-teams-of-equal-skill) |
 ## String
 |  |
 | ------- |
@@ -26,6 +27,7 @@ My LeetCode submissions (best code)
 | [1256-rank-transform-of-an-array](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1256-rank-transform-of-an-array) |
 | [1620-check-if-array-pairs-are-divisible-by-k](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1620-check-if-array-pairs-are-divisible-by-k) |
 | [1694-make-sum-divisible-by-p](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1694-make-sum-divisible-by-p) |
+| [2581-divide-players-into-teams-of-equal-skill](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2581-divide-players-into-teams-of-equal-skill) |
 | [2755-extra-characters-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2755-extra-characters-in-a-string) |
 | [3329-find-the-length-of-the-longest-common-prefix](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/3329-find-the-length-of-the-longest-common-prefix) |
 ## Bit Manipulation
@@ -37,6 +39,7 @@ My LeetCode submissions (best code)
 | ------- |
 | [0389-find-the-difference](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/0389-find-the-difference) |
 | [1256-rank-transform-of-an-array](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1256-rank-transform-of-an-array) |
+| [2581-divide-players-into-teams-of-equal-skill](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2581-divide-players-into-teams-of-equal-skill) |
 ## Rolling Hash
 |  |
 | ------- |
@@ -73,6 +76,7 @@ My LeetCode submissions (best code)
 | [1620-check-if-array-pairs-are-divisible-by-k](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1620-check-if-array-pairs-are-divisible-by-k) |
 | [1694-make-sum-divisible-by-p](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/1694-make-sum-divisible-by-p) |
 | [2494-sum-of-prefix-scores-of-strings](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2494-sum-of-prefix-scores-of-strings) |
+| [2581-divide-players-into-teams-of-equal-skill](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2581-divide-players-into-teams-of-equal-skill) |
 | [2755-extra-characters-in-a-string](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/2755-extra-characters-in-a-string) |
 | [3329-find-the-length-of-the-longest-common-prefix](https://github.com/ADITYAVOFFICIAL/Leetcode_Submissions/tree/master/3329-find-the-length-of-the-longest-common-prefix) |
 ## Dynamic Programming
