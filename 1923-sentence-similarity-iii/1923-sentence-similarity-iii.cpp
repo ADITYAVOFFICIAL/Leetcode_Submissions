@@ -1,41 +1,28 @@
 class Solution {
 public:
     bool areSentencesSimilar(string sentence1, string sentence2) {
-        // Split the sentences into words
-        vector<string> words1 = split(sentence1);
-        vector<string> words2 = split(sentence2);
-        
-        // Ensure words1 is the longer sentence
-        if (words1.size() < words2.size()) {
-            swap(words1, words2);
+        deque<string> v1, v2;
+        stringstream ss(sentence1);
+        string s;
+        while(getline(ss,s,' ')){
+            v1.push_back(s);
         }
-        
-        int i = 0, j = 0;
-        int n1 = words1.size(), n2 = words2.size();
-        
-        // Check for matching prefix
-        while (i < n2 && words1[i] == words2[i]) {
-            i++;
+        stringstream ss2(sentence2);
+        while(getline(ss2,s,' ')){
+            v2.push_back(s);
         }
-        
-        // Check for matching suffix
-        while (j < n2 - i && words1[n1 - j - 1] == words2[n2 - j - 1]) {
-            j++;
+        if(v1.size() > v2.size()) swap(v1,v2);
+        while(v1.size()){
+            if(v1.front() == v2.front()){
+                v1.pop_front();
+                v2.pop_front();
+            } else if(v1.back() == v2.back()){
+                v1.pop_back();
+                v2.pop_back();
+            } else {
+                break;
+            }
         }
-        
-        // The sentences are similar if all words from the smaller sentence are covered
-        return i + j >= n2;
-    }
-
-private:
-    // Helper function to split the sentence into words
-    vector<string> split(const string& sentence) {
-        vector<string> words;
-        istringstream stream(sentence);
-        string word;
-        while (stream >> word) {
-            words.push_back(word);
-        }
-        return words;
+        return v1.empty();
     }
 };
